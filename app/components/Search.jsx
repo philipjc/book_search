@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
+import Actions from '../actions/Actions.js';
+
 class Search extends React.Component{
  constructor(props) {
    super(props);
@@ -22,35 +24,24 @@ class Search extends React.Component{
  runSearch(e) {
   //  e.preventDefault();
    if (e.key === 'Enter') {
-     console.log('pushed enter');
-     axios.get('https://www.googleapis.com/books/v1/volumes?q=' + this.state.value)
-          .then((response) => {
-          console.log(response.data.items[0]);
-          let title = response.data.items[0].volumeInfo.title;
-          let img = response.data.items[0].volumeInfo.imageLinks.thumbnail;
-          this.setState({
-            title,
-            img
-          })
-          })
-          .catch((response) => {
-            console.log(response);
-          });
+    let searchFor = this.state.value;
+    Actions.titleSearch(searchFor);
    }
  }
 
  render() {
    return(
      <div className="search">
-       <input onChange={this.inputHandler}
-              onKeyDown={this.runSearch}
+       <input type="text"
+              name="search-movie"
               className="search__input"
               value={this.state.value}
-              type="text"
-              name="search-movie"
+              onChange={this.inputHandler}
+              onKeyDown={this.runSearch}
               />
             {this.state.title}
             <img src={this.state.img} />
+            <p>{this.state.desc}</p>
      </div>
    );
  }
