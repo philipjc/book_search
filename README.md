@@ -1,1 +1,1 @@
-Search movies using the OMDB API
+Search books using the Google books API.
