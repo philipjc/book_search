@@ -1,4 +1,5 @@
 import React from 'react';
+import Reflux from 'reflux';
 import { RouteHandler } from 'react-router';
 
 // TODO Webpack - resolve file extensions
@@ -14,11 +15,18 @@ class Main extends React.Component {
       desc: '',
       image: ''
     }
+    this.handleDisplayUpdate = this.handleDisplayUpdate.bind(this);
   }
 
   // listen for store change to update state
   componentDidMount() {
-    Actions.updateDisplay();
+    DisplayStore.listen((status) => {
+      console.log('status ', status);
+    });
+  }
+
+  handleDisplayUpdate() {
+    console.log('handle');
   }
 
   render() {

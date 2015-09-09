@@ -29,34 +29,14 @@ const DisplayStore = Reflux.createStore({
          displayData.title = title;
          displayData.desc = desc;
          displayData.image = image;
+
+         this.trigger(displayData);
+
          })
          .catch((response) => {
            console.log(response);
          });
-
-    this.updateDisplay(displayData);
-  },
-
-  updateDisplay() {
-    console.log('called display', displayData);
-    this.trigger();
   }
 
 });
-
-// axios.get('https://www.googleapis.com/books/v1/volumes?q=' + this.state.value)
-//      .then((response) => {
-//      console.log(response.data.items[0]);
-//      let title = response.data.items[0].volumeInfo.title;
-//      let img = response.data.items[0].volumeInfo.imageLinks.thumbnail;
-//      let desc = response.data.items[0].searchInfo.textSnippet;
-//
-//      this.setState({
-//        title,
-//        img,
-//        desc
-//      })
-//      })
-//      .catch((response) => {
-//        console.log(response);
-//      });
+export default DisplayStore;
