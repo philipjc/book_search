@@ -3,16 +3,17 @@ import React from 'react';
 class Display extends React.Component{
  constructor(props) {
    super(props);
-   this.state = {
-
-   }
  }
 
  render() {
+   let { title, desc, image } = this.props.book.status;
+   console.log(title);
 
    return(
-     <div classname="">
-       Display
+     <div className="book-search__display">
+       <h2>{title}</h2>
+       <p>{desc}</p>
+       <img src={image} />
      </div>
    );
  }

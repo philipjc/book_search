@@ -10,18 +10,14 @@ import DisplayStore from '../stores/DisplayStore.js';
 class Main extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      title: '',
-      desc: '',
-      image: ''
-    }
+
     this.handleDisplayUpdate = this.handleDisplayUpdate.bind(this);
   }
 
   // listen for store change to update state
   componentDidMount() {
     DisplayStore.listen((status) => {
-      console.log('status ', status);
+      this.setState({status});
     });
   }
 
@@ -31,13 +27,16 @@ class Main extends React.Component {
 
   render() {
     console.log('Main props ', this.props);
+    console.log('this state', this.state);
 
     return (
       <div className="container">
-        <h1>Book Search</h1>
-        <RouteHandler {...this.props} />
-        <Search />
-        <Display />
+        <div className="book-search">
+          <h1>Book Search</h1>
+          <RouteHandler {...this.props} />
+          <Search />
+          <Display book={this.state} />
+        </div>
       </div>
     );
   }
