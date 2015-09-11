@@ -1,5 +1,4 @@
 import React from 'react';
-import Reflux from 'reflux';
 import { RouteHandler } from 'react-router';
 
 // TODO Webpack - resolve file extensions
@@ -10,25 +9,30 @@ import DisplayStore from '../stores/DisplayStore.js';
 class Main extends React.Component {
   constructor(props) {
     super(props);
-
-    this.handleDisplayUpdate = this.handleDisplayUpdate.bind(this);
+    this.state = {
+      title: '',
+      desc: '',
+      image: ''
+    }
+    // this.handleDisplayUpdate = this.handleDisplayUpdate.bind(this);
   }
 
   // listen for store change to update state
   componentDidMount() {
-    DisplayStore.listen((status) => {
-      this.setState({status});
+    DisplayStore.listen(this.handleDisplayUpdate.bind(this));
+  }
+
+  handleDisplayUpdate(args) {
+    console.log(args);
+    this.setState({
+      title: args.title,
+      desc: args.desc,
+      image: args.image
     });
   }
 
-  handleDisplayUpdate() {
-    console.log('handle');
-  }
-
   render() {
-    console.log('Main props ', this.props);
-    console.log('this state', this.state);
-
+    console.log(this.state);
     return (
       <div className="container">
         <div className="book-search">

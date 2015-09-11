@@ -6,8 +6,9 @@ class Display extends React.Component{
  }
 
  render() {
-   let { title, desc, image } = this.props.book.status;
-   console.log(title);
+   console.log(this.props);
+
+   let { title, desc, image } = this.props.book || '';
 
    return(
      <div className="book-search__display">
