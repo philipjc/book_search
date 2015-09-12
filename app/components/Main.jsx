@@ -14,20 +14,23 @@ class Main extends React.Component {
       desc: '',
       image: ''
     }
-    // this.handleDisplayUpdate = this.handleDisplayUpdate.bind(this);
+    this.handleDisplayUpdate = this.handleDisplayUpdate.bind(this);
   }
 
   // listen for store change to update state
   componentDidMount() {
-    DisplayStore.listen(this.handleDisplayUpdate.bind(this));
+    this.unsubscribe = DisplayStore.listen(this.handleDisplayUpdate);
   }
 
-  handleDisplayUpdate(args) {
-    console.log(args);
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
+  handleDisplayUpdate(res) {
     this.setState({
-      title: args.title,
-      desc: args.desc,
-      image: args.image
+      title: res.title,
+      desc: res.desc,
+      image: res.image
     });
   }
 

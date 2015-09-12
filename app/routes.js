@@ -1,5 +1,5 @@
 import React from 'react';
-import Main from '../components/Main.jsx';
+import Main from './components/Main.jsx';
 
 import { Router, Route, DefaultRoute } from 'react-router';
 

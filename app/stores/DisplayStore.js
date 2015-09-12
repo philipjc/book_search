@@ -4,8 +4,6 @@ import Reflux from 'reflux';
 import Actions from '../actions/Actions.js';
 import axios from 'axios';
 
-// Store listener reference
-let onSearch;
 
 let displayData = {
   title: '',
@@ -22,13 +20,13 @@ const DisplayStore = Reflux.createStore({
 
     axios.get('https://www.googleapis.com/books/v1/volumes?q=' + search)
          .then((response) => {
-         let title = response.data.items[0].volumeInfo.title;
-         let image = response.data.items[0].volumeInfo.imageLinks.thumbnail;
-         let desc = response.data.items[0].searchInfo.textSnippet;
+        //  console.log(response);
+         let { title, description } = response.data.items[0].volumeInfo || '';
+         let { smallThumbnail, thumbnail } = response.data.items[0].volumeInfo.imageLinks || '';
 
          displayData.title = title;
-         displayData.desc = desc;
-         displayData.image = image;
+         displayData.desc = description;
+         displayData.image = thumbnail;
 
          this.trigger(displayData);
 

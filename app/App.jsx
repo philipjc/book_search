@@ -2,7 +2,7 @@ import './styles/_app.scss';
 
 import React from 'react';
 import Router from 'react-router';
-import routes from './config/routes';
+import routes from './routes.js';
 import Main from './components/Main.jsx';
 
 main();

@@ -6,9 +6,7 @@ class Display extends React.Component{
  }
 
  render() {
-   console.log(this.props);
-
-   let { title, desc, image } = this.props.book || '';
+   let { title, desc, image } = this.props.book;
 
    return(
      <div className="book-search__display">
@@ -19,5 +17,11 @@ class Display extends React.Component{
    );
  }
 }
+
+Display.propTypes = ({
+  title: React.PropTypes.string.isRequired,
+  desc: React.PropTypes.string.isRequired,
+  image: React.PropTypes.string.isRequired
+});
 
 module.exports = Display;
