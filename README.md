@@ -5,7 +5,7 @@ To try this little app, you will need Node installed on your machine.
 
 Clone the repository and run npm i. Once complete run the script npm start.
 
-Great things used creted by great people.
+Awesome dependencies used, created by awesome people.
 - [React](http://facebook.github.io/react/)
 - [Reflux](https://github.com/reflux/refluxjs)
 - [React-Router](https://www.npmjs.com/package/react-router)
